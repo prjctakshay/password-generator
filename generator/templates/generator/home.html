@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+</head>
+<body class="container">
+  <h1 class="alert alert-danger text-center">Welcome to Password Generator</h1>
+
+  <!-- way 1 -->
+  <!-- password is  urls path eg: path('password/',......)-->
+  <!-- <form action="password">
+    <input type="submit" value="submit">
+</form> -->
+
+  <!-- way 2 -->
+  <!-- password is  urls name eg: path('password/',views.password,name="password"),-->
+  <form action="{% url 'password' %}">
+    <label for="numOfLetter" class="form-label">Number of Letters</label>
+    <select name="len" id="numOfLetter" class="form-control">
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8" selected>8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+    <br>
+    <input type="checkbox" name="numbers" id="" class="form-check-input"> numbers
+    <br>
+    <input type="checkbox" name="uppercase" id="" class="form-check-input"> uppercase
+    <br>
+    <input type="checkbox" name="special" class="form-check-input"> special characters
+    <br>
+    <br>
+    <input type="submit" value="generate password" class="btn btn-primary">
+  </form>
+
+  {% if pass_flag %}
+  <h2 class="alert alert-success text-center mt-4 ">Your Password is</h2>
+  <div class="input-group input-group-lg">
+    <input type="text" value="{{pass}}" id="myPass"
+      class="input-group-text form-control text-danger inputGroup-sizing-lg">
+    <button onclick="myFunction()" class="form-control">Copy Password</button>
+  </div>
+  {% endif %}
+
+
+
+  <script>
+    function myFunction() {
+      var copyText = document.getElementById("myPass");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999)
+      document.execCommand("copy");
+      alert("Copied the password: " + copyText.value);
+    }
+  </script>
+</body>
+</html>
